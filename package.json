@@ -1,0 +1,33 @@
+{
+  "title": "Media Control",
+  "name": "media-control",
+  "version": "0.1.0",
+  "main": "data/index.js",
+  "repository": "https://github.com/miraks/firefox-media-control",
+  "author": "Alexey Volodkin <a@vldkn.net>",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn run build-js && yarn run build-xpi",
+    "watch": "yarn run watch-js & yarn run watch-xpi",
+    "build-js": "babel src -d data",
+    "watch-js": "yarn run build-js -- -w",
+    "build-xpi": "jpm xpi",
+    "watch-xpi": "while true; do inotifywait -e modify,create,delete -r data && yarn run build-xpi; done"
+  },
+  "engines": {
+    "firefox": ">=50.0"
+  },
+  "permissions": {
+    "multiprocess": true,
+    "private-browsing": true
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-env": "^1.1.4",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "jpm": "^1.2.2"
+  }
+}
