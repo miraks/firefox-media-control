@@ -1,7 +1,7 @@
 {
   "title": "Media Control",
   "name": "media-control",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "data/index.js",
   "repository": "https://github.com/miraks/firefox-media-control",
   "author": "Alexey Volodkin <a@vldkn.net>",
