@@ -20,6 +20,19 @@ const controls = [
   { name: 'next', command: 'next', content: symbols.next }
 ]
 
+const controlColors = {
+  default: '#6d6d6d',
+  hovered: '#000000'
+}
+
+const controlStyles = {
+  color: controlColors.default,
+  pointerEvents: 'all',
+  cursor: 'pointer',
+  marginRight: '0.25em',
+  transition: 'color 0.2s linear'
+}
+
 const tabs = {}
 let socketPage = null
 let playerPageMod = null
@@ -32,9 +45,7 @@ const addControls = (xulTab) => {
   controls.forEach(({ name, command, content }) => {
     const control = chromeDocument.createElement('div')
 
-    control.style.pointerEvents = 'all'
-    control.style.cursor = 'pointer'
-    control.style.marginRight = '0.25em'
+    Object.assign(control.style, controlStyles)
     control.setAttribute('anonid', name)
     control.textContent = content
 
@@ -46,6 +57,14 @@ const addControls = (xulTab) => {
       tab.lastActivity = new Date()
       tab.worker.port.emit('command', command)
       event.stopPropagation()
+    })
+
+    control.addEventListener('mouseover', () => {
+      control.style.color = controlColors.hovered
+    })
+
+    control.addEventListener('mouseout', () => {
+      control.style.color = controlColors.default
     })
   })
 }
