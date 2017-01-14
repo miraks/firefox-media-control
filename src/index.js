@@ -73,6 +73,12 @@ const removeControls = (tab) => {
   controls.forEach(({ name }) => { tab[name].remove() })
 }
 
+const addEventListeners = (xulTab) => {
+  xulTab.addEventListener('TabMove', () => {
+    addControls(xulTab)
+  })
+}
+
 const changeStatus = (tab, status) => {
   tab.status = status
   tab.playPause.textContent = symbols[status]
@@ -94,6 +100,7 @@ const onPageModAttach = (worker) => {
 
   worker.port.once('init', () => {
     addControls(xulTab)
+    addEventListeners(xulTab)
     worker.port.emit('status')
   })
 
