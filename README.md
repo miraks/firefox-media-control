@@ -1,1 +1,0 @@
-# Firefox Media Control
