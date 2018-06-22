@@ -4,14 +4,21 @@ const configs = [
     playPauseSelector: '#player-bar-play-pause',
     prevSelector: '#player-bar-rewind',
     nextSelector: '#player-bar-forward',
-    playingClass: 'playing'
+    isPlaying: (el) => el.classList.contains('playing')
+  },
+  {
+    url: /music\.youtube\.com/,
+    playPauseSelector: 'ytmusic-player-bar .play-pause-button',
+    prevSelector: 'ytmusic-player-bar .previous-button',
+    nextSelector: 'ytmusic-player-bar .next-button',
+    isPlaying: (el) => el.icon === 'miniplayer:pause'
   },
   {
     url: /soundcloud\.com/,
     playPauseSelector: '.playControls .playControls__play',
     prevSelector: '.playControls .playControls__prev',
     nextSelector: '.playControls .playControls__next',
-    playingClass: 'playing'
+    isPlaying: (el) => el.classList.contains('playing')
   }
 ]
 
@@ -29,7 +36,7 @@ const getPrevEl = () => document.querySelector(state.config.prevSelector)
 
 const getNextEl = () => document.querySelector(state.config.nextSelector)
 
-const isPlaying = () => getPlayPauseEl().classList.contains(state.config.playingClass)
+const isPlaying = () => state.config.isPlaying(getPlayPauseEl())
 
 const findConfig = () => {
   const location = window.location.toString()

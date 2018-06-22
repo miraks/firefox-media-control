@@ -26,7 +26,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://play.google.com/music/*", "https://soundcloud.com/*"],
+      "matches": [
+        "https://play.google.com/music/*",
+        "https://music.youtube.com/*",
+        "https://soundcloud.com/*"
+      ],
       "js": ["content.js"]
     }
   ]
