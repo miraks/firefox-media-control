@@ -1,6 +1,5 @@
 {
   "extends": "airbnb-base",
-  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "webextensions": true
@@ -8,6 +7,7 @@
   "settings": {
     "import/resolver": "webpack"
   },
+  "plugins": ["html"],
   "rules": {
     "arrow-parens": ["error", "always"],
     "comma-dangle": ["error", "never"],
@@ -26,19 +26,9 @@
       }
     ],
     "no-param-reassign": ["error", { "props": false }],
-    "no-shadow": "off",
     "no-use-before-define": "off",
-    "no-unused-vars": [
-      "error",
-      {
-        "vars": "all",
-        "args": "all",
-        "ignoreRestSiblings": false,
-        "varsIgnorePattern": "^h$",
-        "argsIgnorePattern": "^_+$"
-      }
-    ],
     "object-shorthand": ["error", "always"],
-    "semi": ["error", "never"]
+    "semi": ["error", "never"],
+    "import/extensions": "off"
   }
 }
